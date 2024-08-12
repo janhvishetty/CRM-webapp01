@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support Tickets</title>
+<style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+</style>
+</head>
+<body>
+<h1>Support Tickets</h1>
+<nav>
+    <form action="/" >
+    <button type="submit">Home</button>
+    </form>
+    <form action="/get_tickets" >
+    <button type="submit">back</button>
+    </form>
+</nav>
+<table>
+<thead>
+<tr>
+<th>Ticket ID</th>
+<th>Customer ID</th>
+<th>Issue Date</th>
+<th>Issue Type</th>
+<th>Resolution Time (hours)</th>
+</tr>
+</thead>
+<tbody>
+            {% for ticket in support_tickets %}
+<tr>
+<td>{{ ticket.ticket_id }}</td>
+<td>{{ ticket.customer_id }}</td>
+<td>{{ ticket.issue_date }}</td>
+<td>{{ ticket.issue_type }}</td>
+<td>{{ ticket.resolution_time_hours }}</td>
+</tr>
+            {% endfor %}
+</tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='main.css')}}">
+    <title>Product Data</title>
+</head>
+<body>
+    <h1>Fetch Products</h1>
+    <nav class="nav">
+		<a href="/">Home</a>
+		<a href="/back">Back</a>
+	</nav>
+    <div>
+    <form action="/view_products" class="form_main" method="get">
+        <div><label for="search_by">Search by:</label>
+        <select id="search_by" name="search_by" required>
+            <option value="">--Please Select an option--</option>
+            <option value="product_name">Product Name</option>
+
+            <option value="description">Description</option>
+             <option value="all">All Products</option>
+        </select><br><br>
+    </div>
+        <div><label for="value">Value:</label>
+        <input type="text" id="value" name="value"><br><br>
+    </div>
+        <input type="submit" value="Submit">
+    </form>
+    </div>
+</body>
+</html>

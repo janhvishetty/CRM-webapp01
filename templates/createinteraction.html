@@ -1,0 +1,68 @@
+<html>
+
+<head>
+	<title>Home page</title>
+	<link rel="stylesheet" href="{{url_for('static',filename='main.css')}}">
+
+</head>
+
+<body id="full">
+	<h1> Interaction Logging Page</h1>
+	<nav class="nav">
+		<a href="/">Home</a>
+		<a href="/back">Back</a>
+	</nav>
+	<div class="demo">
+		<form id="addInteraction" class="left form_main" method='POST' action='interactions'>
+			<div><label>Customer ID:</label>
+				<input type="number" name="custid" required><br><br>
+			</div>
+			<div><label>Interaction Date:</label>
+				<input type="date" name="date" required><br><br>
+			</div>
+			<div><label>Channel:</label>
+				<select name="channel" required>
+					<option value="">--Please choose an option--</option>
+					<option value="Email">Email</option>
+					<option value="In-person">In-person</option>
+					<option value="Online chat">Online chat</option>
+					<option value="Phone">Phone</option>
+				</select><br><br>
+				<div><label>Subject:</label>
+					<input type="text" name="subj" required><br><br>
+				</div>
+				<div><label>Response Time(Min):</label>
+					<input type="number" name="restime" required><br><br>
+				</div>
+				<button type="submit">Submit</button>
+
+		</form>
+	</div>
+</body>
+<script>
+	document.getElementById('addInteraction').addEventListener('submit', function (event) {
+		event.preventDefault();
+		var formData = new FormData(this);
+
+		fetch('/interactions', {
+			method: 'POST',
+			body: formData
+		})
+			.then(response => response.json())
+			.then(data => {
+				if (data.success) {
+					alert(data.message);
+					// Optionally redirect to another page
+					// window.location.href = '/dashboard';
+				} else {
+					alert(data.message);
+				}
+				console.log(data)
+			})
+			.catch(error => {
+				console.error('Error:', error);
+			});
+	});
+</script>
+
+</html>

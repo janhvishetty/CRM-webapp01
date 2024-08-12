@@ -1,0 +1,57 @@
+<html>
+<head>
+	<title>Home page</title>
+	<link rel="stylesheet" href="{{url_for('static',filename='main.css')}}">
+
+</head>
+<body id="full">
+	<h1> SALES UPDATE</h1>
+	<nav class="nav">
+		<a href="/">Home</a>
+		<a href="/back">Back</a>
+	</nav>
+	<div class="demo">
+	<form id="updSales" class="left form_main" method='POST' action='update_sales_details'>
+		<div><label>Sale ID:</label>
+		<input type="number" name="Sale_Id" required><br><br></div>
+		<div><label>Update Field:</label>
+        <select name="Update Field" required>
+            <option value="">--Please choose an option--</option>
+            <option value="sale_amount">Sale Amount</option>
+            <option value="product_id">Product ID</option>
+
+        </select><br><br></div>
+		<div><label>Update Value:</label>
+		<input type="text" name="Update Value" required><br><br></div>
+		<button type="submit" >Submit</button>
+
+</form>
+	</div>
+</body>
+<script>
+	document.getElementById('updSales').addEventListener('submit', function(event) {
+		event.preventDefault();
+		var formData = new FormData(this);
+
+		fetch('/update_sales_details', {
+			method: 'POST',
+			body: formData
+		})
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				alert(data.message);
+				// Optionally redirect to another page
+				// window.location.href = '/dashboard';
+			} else {
+				alert(data.message);
+			}
+			console.log(data)
+		})
+		.catch(error => {
+			console.error('Error:', error);
+		});
+	});
+</script>
+</html>
+

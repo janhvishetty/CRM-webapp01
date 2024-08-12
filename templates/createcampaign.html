@@ -1,0 +1,65 @@
+<html>
+
+<head>
+	<title>Home page</title>
+	<link rel="stylesheet" href="{{url_for('static',filename='main.css')}}">
+
+</head>
+
+<body id="full">
+	<h1> Marketing Campaign Entry</h1>
+	<!-- <nav></nav> -->
+	<nav class="nav">
+		<a href="/">Home</a>
+		<a href="/back">Back</a>
+	</nav>
+	<div class="demo">
+		<form id="createCampaign" class="left form_main" method='POST' action='campaigns'>
+			<div>
+			<label>Campaign Name:</label>
+			<input type="text" name="campname" required><br><br>
+			</div>
+			<div><label>Start Date:</label>
+				<input type="date" name="startdate" required><br><br>
+			</div>
+			<div><label>End Date:</label>
+				<input type="date" name="enddate" required><br><br>
+			</div>
+			<div><label>Budget:</label>
+				<input type="text" name="budget" required><br><br>
+			</div>
+			<div><label>Response Rate:</label>
+				<input type="number" step="0.01" name="res_rate" required><br><br>
+			</div>
+			<button type="submit">Submit</button>
+
+		</form>
+	</div>
+</body>
+<script>
+	document.getElementById('createCampaign').addEventListener('submit', function (event) {
+		event.preventDefault();
+		var formData = new FormData(this);
+
+		fetch('/campaigns', {
+			method: 'POST',
+			body: formData
+		})
+			.then(response => response.json())
+			.then(data => {
+				if (data.success) {
+					alert(data.message);
+					// Optionally redirect to another page
+					// window.location.href = '/dashboard';
+				} else {
+					alert(data.message);
+				}
+				console.log(data)
+			})
+			.catch(error => {
+				console.error('Error:', error);
+			});
+	});
+</script>
+
+</html>

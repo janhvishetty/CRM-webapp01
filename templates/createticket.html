@@ -1,0 +1,63 @@
+<html>
+<head>
+	<title>Home page</title>
+	<link rel="stylesheet" href="{{url_for('static',filename='main.css')}}">
+
+</head>
+<body id="full">
+	<h1> Support Ticket Entry</h1>
+	<nav class="nav">
+		<a href="/">Home</a>
+		<a href="/back">Back</a>
+	</nav>
+	<div class="demo">
+	<form id="createTicket" class="left form_main" method='POST' action='support_tickets'>
+		<div>
+		<label>Customer ID:</label>
+		<input type="number" name="custid" required><br><br>
+	</div>
+		<div>
+		<label>Issue Date:</label>
+		<input type="date" name="date" required><br><br>
+		
+	</div>
+	<div>
+		<label>Issue Type:</label>
+		<input type="text" name="type" required><br><br>
+	</div>
+		<div>
+        <label>Resolution Time Hours:</label>
+		<input type="number" name="res_time" required><br><br>
+	</div>
+        <button type="submit" >Submit</button>
+
+</form>
+	</div>
+</body>
+<script>
+	document.getElementById('createTicket').addEventListener('submit', function(event) {
+		event.preventDefault();
+		var formData = new FormData(this);
+
+		fetch('/support_tickets', {
+			method: 'POST',
+			body: formData
+		})
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				alert(data.message);
+				// Optionally redirect to another page
+				// window.location.href = '/dashboard';
+			} else {
+				alert(data.message);
+			}
+			console.log(data)
+		})
+		.catch(error => {
+			console.error('Error:', error);
+		});
+	});
+</script>
+</html>
+

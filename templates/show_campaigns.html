@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaigns Data</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Campaigns Data</h1>
+    <nav>
+		<form action="/" >
+		<button type="submit">Home</button>
+		</form>
+		<form action="/get_campaign" >
+		<button type="submit">back</button>
+		</form>
+	</nav>
+    <table>
+        <thead>
+            <tr>
+                <th>Campaign ID</th>
+                <th>Campaign Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Budget</th>
+                <th>Response Rate (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for campaign in campaigns %}
+            <tr>
+                <td>{{ campaign.campaign_id }}</td>
+                <td>{{ campaign.campaign_name }}</td>
+                <td>{{ campaign.start_date }}</td>
+                <td>{{ campaign.end_date }}</td>
+                <td>{{ campaign.budget }}</td>
+                <td>{{ campaign.response_rate }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!-- sales.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Data</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sales Data</h1>
+    <nav>
+		<form action="/" >
+		<button type="submit">Home</button>
+		</form>
+		<form action="/get_sales" >
+		<button type="submit">back</button>
+		</form>
+	</nav>
+    <table>
+        <thead>
+            <tr>
+                <th>Sale ID</th>
+                <th>Customer ID</th>
+                <th>Product ID</th>
+                <th>Sale Date</th>
+                <th>Sale Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sale in sales %}
+            <tr>
+                <td>{{ sale.sale_id }}</td>
+                <td>{{ sale.customer_id }}</td>
+                <td>{{ sale.product_id }}</td>
+                <td>{{ sale.sale_date }}</td>
+                <td>{{ sale.sale_amount }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

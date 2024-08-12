@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{url_for('static',filename='main.css')}}">
+        <title>Support Ticket Search</title>
+</head>
+
+<body>
+        <h1>Search Support Tickets</h1>
+        <nav class="nav">
+                <a href="/">Home</a>
+                <a href="/back">Back</a>
+        </nav>
+        <div class="demo">
+                <form action="/view_tickets" class="form_main" method="get">
+                        <div><label for="filter_by">Filter by:</label>
+                                <select id="filter_by" name="filter_by" required>
+                                        <option value="">--Please select an option--</option>
+                                        <option value="ticket_id">Ticket ID</option>
+                                        <option value="customer_id">Customer ID</option>
+                                        <option value="issue_date">Issue Date</option>
+                                        <option value="issue_type">Issue Type</option>
+                                        <option value="all">All</option>
+                                </select><br><br>
+                        </div>
+                        <div><label for="value">Value:</label>
+                                <input type="text" id="value" name="value"><br><br>
+                        </div>
+                        <input type="submit" value="Search">
+                </form>
+        </div>
+</body>
+
+</html>

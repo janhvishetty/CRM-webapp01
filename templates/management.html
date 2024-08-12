@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{url_for('static',filename='home2.css')}}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<meta charset="UTF-8">
+<title>Flask App</title>
+</head>
+<body>
+
+<h1 style="color:black">Management Login Page</h1>
+<div class="container ">
+	
+<form id="loginForm" class="demo" method="POST">
+	<center>
+		<h2><i class="fa fa-user" aria-hidden="true"></i> Login</h2>
+	</center><br>
+<label for="email">Email:</label>
+<input type="text" id="email" name="employee_email" required><br><br>
+<label for="password">Password:</label>
+<input type="password" id="password" name="employee_password" required><br><br>
+<button type="submit">Login</button>
+</form>
+</div>
+
+</body>
+<script>
+	document.getElementById('loginForm').addEventListener('submit', function(event) {
+		event.preventDefault();
+		var formData = new FormData(this);
+
+		fetch('/check_employee', {
+			method: 'POST',
+			body: formData
+		})
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				alert(data.msg);
+				window.location.href='/employee_dashboard'
+			} else {
+				alert(data.msg);
+			}
+			console.log(data)
+		})
+		.catch(error => {
+			console.error('Error:', error);
+		});
+	});
+</script>
+</html>

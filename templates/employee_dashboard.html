@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+  <title>Employee Dashboard</title>
+   <!-- Include any necessary CSS or link to external stylesheets -->
+    <link rel="stylesheet" href="{{url_for('static',filename='main.css')}}">
+</head>
+<body>
+   <h1>Employee Dashboard</h1>
+   <nav class="nav">
+    <a href="/">Home</a>
+    
+</nav>
+   <div class="dashboard-section">
+      <h2>Manage Customers</h2>
+      <div id="form_container" class="">
+       <form action="/add_customer" method="get"  class="card">
+           <button type="submit">Add Customer</button>
+       </form>
+
+       <form id="form2" action="/update_customer" method="get" class="card">
+           <button type="submit">Update Customer</button>
+       </form>
+        <form id="form3" action="/get_customer" method="get" class="card">
+           <button type="submit">View Customer</button>
+       </form>
+       </div>
+   </div>
+
+    <div class="dashboard-section">
+        <h2>Manage Interaction Logging</h2>
+        <div id="form_container">
+        <form action="/customer_interaction" method="get" class="card">
+           <button type="submit">Add Interaction</button>
+       </form>
+        <form action="/get_interaction" method="get" class="card">
+           <button type="submit">View Interaction</button>
+       </form>
+       </div>
+    </div>
+
+   <div class="dashboard-section">
+      <h2>Manage Marketing Campaigns</h2>
+      <div id="form_container">
+       <form action="/marketing_campaign" method="get" class="card">
+           <button type="submit">Add Marketing Campaign</button>
+       </form>
+       <form action="/update_campaign" method="get" class="card">
+           <button type="submit">Update Campaign</button>
+       </form>
+       <form action="/get_campaign" method="get" class="card">
+           <button type="submit">View Campaign</button>
+       </form>
+       </div>
+   </div>
+
+
+
+   <div class="dashboard-section">
+      <h2>Manage Products</h2>
+      <div id="form_container">
+       <form action="/create_product" method="get" class="card">
+           <button type="submit">Add Products</button>
+       </form>
+       <form action="/update_product" method="get" class="card">
+           <button type="submit"> Update Products</button>
+       </form>
+        <form action="/get_product" method="get" class="card">
+           <button type="submit"> View Products</button>
+       </form>
+       </div>
+   </div>
+
+
+
+   <div class="dashboard-section">
+      <h2>Manage Sales</h2>
+      <div id="form_container">
+       <form action="/create_sales" method="get" class="card">
+           <button type="submit">Add Sales</button>
+       </form>
+       <form action="/update_sales" method="get" class="card">
+           <button type="submit"> Update Sales</button>
+       </form>
+       <form action="/get_sales" method="get" class="card">
+           <button type="submit"> View Sales</button>
+       </form>
+       </div>
+   </div>
+
+
+
+   <div class="dashboard-section">
+      <h2>Manage Support Tickets</h2>
+      <div id="form_container">
+       <form action="/support_tickets" method="get" class="card">
+           <button type="submit">Add Support Tickets</button>
+       </form>
+       <form action="/get_tickets" method="get" class="card">
+           <button type="submit"> View Support Tickets</button>
+       </form>
+       </div>
+   </div>
+
+</body>
+</html>

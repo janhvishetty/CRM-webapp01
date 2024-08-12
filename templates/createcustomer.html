@@ -1,0 +1,57 @@
+<html>
+<head>
+	<title>Home page</title>
+	<link rel="stylesheet" href="{{url_for('static',filename='main.css')}}">
+
+</head>
+<body id="full">
+	<h1> CUSTOMER ENTRY PAGE</h1>
+	<nav class="nav">
+		<a href="/">Home</a>
+		<a href="/back">Back</a>
+	</nav>
+<div class="demo">
+	<form id="addCust" class="left form_main" method='POST'>
+		<div>
+		<label>Customer Name:</label>
+		<input type="text" name="name" required><br><br>
+	</div>
+	<div>
+		<label>Email:</label>
+		<input type="text" name="email" required><br><br>
+	</div>
+	<div>
+		<label>Signup Date:</label>
+		<input type="date" name="date" required><br><br>
+	</div>
+		<button type="submit" >Submit</button>
+	</form>
+</div>
+</body>
+<script>
+	document.getElementById('addCust').addEventListener('submit', function(event) {
+		event.preventDefault();
+		var formData = new FormData(this);
+
+		fetch('/customers', {
+			method: 'POST',
+			body: formData
+		})
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				alert(data.message);
+				// Optionally redirect to another page
+				// window.location.href = '/dashboard';
+			} else {
+				alert(data.message);
+			}
+			console.log(data)
+		})
+		.catch(error => {
+			console.error('Error:', error);
+		});
+	});
+</script>
+</html>
+

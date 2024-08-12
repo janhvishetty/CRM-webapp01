@@ -1,0 +1,55 @@
+<html>
+<head>
+	<title>Home page</title>
+	<link rel="stylesheet" href="{{url_for('static',filename='main.css')}}">
+
+</head>
+<body id="full">
+	<h1> Sales Entry</h1>
+	
+	<nav class="nav">
+		<a href="/">Home</a>
+		<a href="/back">Back</a>
+	</nav>
+	<div class="demo">
+	<form id="createSales" class="left form_main" method='POST' action='salesentry'>
+		<div><label>Customer ID:</label>
+		<input type="number" name="custid" required><br><br></div>
+		<div><label>Product ID:</label>
+		<input type="number" name="pdid" required><br><br></div>
+		<div><label>Sale Date:</label>
+		<input type="date" name="date" required><br><br></div>
+        <div><label>Sale Amount:</label>
+		<input type="number" name="amount" required><br><br></div>
+        <button type="submit" >Submit</button>
+
+</form>
+	</div>
+</body>
+<script>
+	document.getElementById('createSales').addEventListener('submit', function(event) {
+		event.preventDefault();
+		var formData = new FormData(this);
+
+		fetch('/salesentry', {
+			method: 'POST',
+			body: formData
+		})
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				alert(data.message);
+				// Optionally redirect to another page
+				// window.location.href = '/dashboard';
+			} else {
+				alert(data.message);
+			}
+			console.log(data)
+		})
+		.catch(error => {
+			console.error('Error:', error);
+		});
+	});
+</script>
+</html>
+
